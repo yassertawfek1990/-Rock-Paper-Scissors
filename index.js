@@ -8,9 +8,9 @@ function getComputerChoice(){
 
 // console.log(getComputerChoice())
 
-function getHumanChoice(){
-    return(prompt("choose rock , paper or scissors").toLowerCase())
-}
+// function getHumanChoice(){
+//     return(prompt("choose rock , paper or scissors").toLowerCase())
+// }
 // console.log(getHumanChoice())
 
 function playRound(humanChoice , computerChoice){
@@ -44,13 +44,31 @@ function playRound(humanChoice , computerChoice){
 
 
 
-function playGame(){
-    for (let i = 0; i<5;i++){
-        const humanChoice = getHumanChoice()
-        const computerChoice = getComputerChoice()
-        playRound(humanChoice , computerChoice)
-    }
+// function playGame(){
+//     for (let i = 0; i<5;i++){
+//         const humanChoice = getHumanChoice()
+//         const computerChoice = getComputerChoice()
+//         playRound(humanChoice , computerChoice)
+//     }
+
+//     humanScore > computerScore? console.log(`You win, your score is: ${humanScore} and computer score is: ${computerScore}`): humanScore < computerScore? console.log(`You loose, your score is: ${humanScore} and computer score is: ${computerScore}`): console.log(`It is a Draw, your score is: ${humanScore} and computer score is: ${computerScore}`)
+// }
+// playGame()
+function playGame(humanChoice){
+    
+    const computerChoice = getComputerChoice()
+    playRound(humanChoice , computerChoice)
+    
 
     humanScore > computerScore? console.log(`You win, your score is: ${humanScore} and computer score is: ${computerScore}`): humanScore < computerScore? console.log(`You loose, your score is: ${humanScore} and computer score is: ${computerScore}`): console.log(`It is a Draw, your score is: ${humanScore} and computer score is: ${computerScore}`)
 }
-playGame()
+
+let buts = document.querySelectorAll("button")
+
+Array.from(buts).forEach(b => {
+    b.onclick = ()=>{
+        playGame(b.textContent)
+        document.querySelector("div").textContent = humanScore == 5?`You win, your score is: ${humanScore} and computer score is: ${computerScore}`:computerScore == 5? `Computer wins, your score is: ${humanScore} and computer score is: ${computerScore}`: `your score is: ${humanScore} and computer score is: ${computerScore}`
+
+    }
+});
